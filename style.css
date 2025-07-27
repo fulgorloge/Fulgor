@@ -1,4 +1,4 @@
-/* Variables CSS para colores y fuentes - Facilitan la personalización */
+/* --- Variables CSS para colores y fuentes - Facilitan la personalización --- */
 :root {
     --primary-color: #FFD700; /* Dorado brillante */
     --secondary-color: #007BFF; /* Azul para botones/enlaces */
@@ -157,6 +157,16 @@ a:hover {
 .logo img {
     height: 50px; /* Tamaño del logo */
     vertical-align: middle;
+    animation: pulse 2s infinite alternate; /* Animación de pulso */
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
 }
 
 .nav-menu ul {
@@ -174,6 +184,7 @@ a:hover {
     font-size: 1.05em;
     padding: 5px 0;
     position: relative;
+    transition: color 0.3s ease, transform 0.3s ease; /* Añadimos transición al transform */
 }
 
 .nav-menu ul li a::after {
@@ -185,6 +196,11 @@ a:hover {
     bottom: 0;
     left: 0;
     transition: width 0.3s ease-in-out;
+}
+
+.nav-menu ul li a:hover {
+    color: var(--primary-color);
+    transform: translateY(-2px); /* Ligeramente hacia arriba al hacer hover */
 }
 
 .nav-menu ul li a:hover::after {
@@ -251,10 +267,13 @@ a:hover {
     /* Asegúrate de tener una imagen background-hero.jpg */
     min-height: 80vh;
     display: flex;
+    flex-direction: column; /* Asegura que el contenido y la mascota se organicen en columna */
     align-items: center;
     justify-content: center;
     text-align: center;
     padding-top: 80px; /* Para dejar espacio al header fijo */
+    position: relative; /* Importante para posicionar la mascota absoluta */
+    overflow: hidden; /* Evita que la mascota se salga del hero si está muy al borde */
 }
 
 .hero-section h1 {
@@ -277,9 +296,110 @@ a:hover {
     min-width: 180px;
 }
 
+/* --- Estilos para el Fénix --- */
+
+/* Fénix en la Hero Section */
+.hero-mascot {
+    position: absolute;
+    bottom: 20px; /* Distancia desde abajo */
+    right: 50px; /* Distancia desde la derecha */
+    width: 250px; /* Tamaño de la imagen del fénix */
+    height: auto;
+    z-index: 1; /* Asegura que esté por encima del fondo */
+}
+
+.hero-mascot img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    animation: 
+        fenixFloat 4s ease-in-out infinite alternate, /* Animación de flotar y ascender */
+        fenixGlow 2s ease-in-out infinite alternate; /* Animación de brillo sutil */
+    filter: drop-shadow(0 5px 20px rgba(255, 165, 0, 0.6)); /* Sombra para un efecto de brillo */
+}
+
+/* Animación de flotar y ascender para el fénix */
+@keyframes fenixFloat {
+    0% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(2deg); /* Ligeramente más alto y rotado */
+    }
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+}
+
+/* Animación de brillo sutil para el fénix */
+@keyframes fenixGlow {
+    0% {
+        filter: drop-shadow(0 5px 20px rgba(255, 165, 0, 0.6));
+    }
+    50% {
+        filter: drop-shadow(0 8px 25px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 10px rgba(255, 100, 0, 0.5));
+    }
+    100% {
+        filter: drop-shadow(0 5px 20px rgba(255, 165, 0, 0.6));
+    }
+}
+
+
+/* Mini fénix al lado del logo principal */
+.mascot-logo-mini {
+    display: inline-block;
+    width: 35px; /* Tamaño de la mini mascota */
+    height: 35px;
+    margin-left: 10px;
+    vertical-align: middle;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* La URL de la imagen se establece directamente en el HTML ahora */
+    animation: fenixMiniPulse 3s linear infinite; /* Animación de pulso y rotación */
+}
+
+/* Animación para la mini mascota fénix */
+@keyframes fenixMiniPulse {
+    0% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+    25% {
+        transform: scale(1.05) rotate(5deg);
+        filter: brightness(1.2);
+    }
+    50% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+    75% {
+        transform: scale(1.05) rotate(-5deg);
+        filter: brightness(1.2);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        filter: brightness(1);
+    }
+}
+
+
 /* --- About Section --- */
 .about-section h2, .about-section .subtitle {
     text-align: center;
+}
+
+.about-section .about-content,
+.team-grid .team-member {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.about-section.visible .about-content,
+.team-grid.visible .team-member {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .about-content {
@@ -766,6 +886,20 @@ a:hover {
     .hero-section p {
         font-size: 1.3em;
     }
+    .hero-ctas .btn {
+        margin: 0 10px; /* Ajusta el margen para botones en tabletas */
+    }
+
+    /* Ajuste de mascota para tablets */
+    .hero-mascot {
+        width: 180px; /* Reduce el tamaño en tablets */
+        right: 30px;
+        bottom: 15px;
+    }
+    .mascot-logo-mini {
+        width: 30px;
+        height: 30px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -776,6 +910,10 @@ a:hover {
 
     .logo {
         margin-bottom: 15px;
+    }
+    .mascot-logo-mini {
+        /* Puedes ocultar la mini mascota en este tamaño si el espacio es muy limitado */
+        display: none;
     }
 
     .nav-menu ul {
@@ -838,6 +976,13 @@ a:hover {
     .timeline-icon {
         top: 0px; /* Ajusta la posición vertical del icono */
     }
+
+    /* Ajuste de mascota para móviles */
+    .hero-mascot {
+        width: 130px; /* Reduce aún más en móviles */
+        right: 15px;
+        bottom: 10px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -871,5 +1016,10 @@ a:hover {
         max-width: 100%; /* Ocupa todo el ancho disponible */
         margin-left: 0;
     }
-}
 
+    .hero-mascot {
+        width: 100px; /* Tamaño muy pequeño en los teléfonos más pequeños */
+        right: 10px;
+        bottom: 5px; /* Puede que necesites ocultarlo o reposicionarlo completamente en algunos diseños */
+    }
+}
