@@ -1,0 +1,718 @@
+
+
+/* --- Variables CSS (Colores y Fuentes) --- */
+:root {
+    --primary-color: #FFD700; /* Dorado FULGOR */
+    --secondary-color: #007BFF; /* Azul de acento */
+    --dark-blue: #0B1F3D; /* Azul oscuro profundo (base de fondo/texto) */
+    --light-gray: #f2f5f9; /* Fondo claro para secciones */
+    --text-color: #333; /* Color de texto general */
+    --light-text-color: #666; /* Texto secundario/párrafos */
+    --white: #ffffff;
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
+
+    --font-heading: 'Poppins', sans-serif; /* Fuente para títulos */
+    --font-body: 'Roboto', sans-serif; /* Fuente para texto general */
+}
+
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* --- Estilos Generales --- */
+body {
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+    color: var(--text-color);
+    background-color: var(--white);
+    overflow-x: hidden; /* Evitar scroll horizontal inesperado */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 25px; /* Más padding para los lados */
+}
+
+.section-padding {
+    padding: 100px 0; /* Más espacio entre secciones */
+}
+
+.bg-light {
+    background-color: var(--light-gray);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--dark-blue);
+    text-align: center;
+    margin-bottom: 25px; /* Más espacio */
+    line-height: 1.2;
+}
+
+h1 { font-size: 3.8em; }
+h2 { font-size: 2.8em; }
+h3 { font-size: 2em; }
+h4 { font-size: 1.5em; }
+
+.subtitle {
+    text-align: center;
+    color: var(--light-text-color);
+    font-size: 1.3em;
+    margin-bottom: 60px; /* Más espacio */
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- Botones --- */
+.btn {
+    display: inline-block;
+    padding: 14px 30px; /* Más padding para botones */
+    border-radius: 8px; /* Bordes más redondeados */
+    text-decoration: none;
+    font-weight: 600; /* Más peso en la fuente */
+    transition: all 0.3s ease; /* Transición suave para todos los cambios */
+    border: none;
+    cursor: pointer;
+    font-size: 1.05em;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--dark-blue);
+}
+
+.btn-primary:hover {
+    background-color: #E0C000; /* Un dorado un poco más oscuro al hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px); /* Pequeño efecto de elevación */
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--secondary-color);
+    border: 2px solid var(--secondary-color);
+}
+
+.btn-secondary:hover {
+    background-color: var(--secondary-color);
+    color: var(--white);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* --- Header (Encabezado) --- */
+.header {
+    background-color: var(--dark-blue);
+    color: var(--white);
+    padding: 20px 0; /* Más padding */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.2); /* Sombra más pronunciada */
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 45px; /* Ajusta el tamaño de tu logo */
+}
+
+.nav-menu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-menu ul li {
+    margin-left: 35px; /* Más espacio entre ítems del menú */
+    position: relative; /* Para el efecto de subrayado */
+}
+
+.nav-menu ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.05em;
+    transition: color 0.3s ease;
+}
+
+.nav-menu ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* Efecto de subrayado para el menú */
+.nav-menu ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background-color: var(--primary-color);
+    bottom: -5px;
+    left: 0;
+    transition: width 0.3s ease-in-out;
+}
+.nav-menu ul li a:hover::after,
+.nav-menu ul li a.active::after { /* Puedes añadir una clase 'active' para la página actual */
+    width: 100%;
+}
+
+.header-actions .btn {
+    margin-left: 15px;
+}
+.header-actions .btn-secondary {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+.header-actions .btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--dark-blue);
+}
+
+/* --- Sección Hero --- */
+.hero-section {
+    background: linear-gradient(135deg, var(--dark-blue) 0%, #1a4270 100%); /* Degradado más dinámico */
+    color: var(--white);
+    text-align: center;
+    padding: 180px 0; /* Más padding */
+    position: relative;
+    overflow: hidden; /* Para cualquier efecto de fondo */
+}
+
+.hero-section h1 {
+    font-size: 4.8em; /* Título más grande */
+    margin-bottom: 25px;
+    color: var(--primary-color);
+    text-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Sombra al texto */
+}
+
+.hero-section p {
+    font-size: 1.6em; /* Texto más grande */
+    margin-bottom: 50px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 300;
+}
+
+.hero-ctas .btn {
+    font-size: 1.2em; /* Botones más grandes */
+    padding: 18px 40px;
+    margin: 0 15px;
+}
+
+/* --- Sección Acerca de Nosotros --- */
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto 50px auto;
+    text-align: justify;
+}
+.about-content p {
+    color: var(--light-text-color);
+    font-size: 1.1em;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Miembros de equipo más grandes */
+    gap: 35px;
+    margin-top: 40px;
+}
+
+.team-member {
+    text-align: center;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 12px; /* Más redondeado */
+    box-shadow: 0 8px 25px var(--shadow-light); /* Sombra más suave y moderna */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    position: relative;
+}
+.team-member:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px var(--shadow-medium);
+}
+
+.team-member img {
+    width: 140px; /* Tamaño de imagen más grande */
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 4px solid var(--primary-color); /* Borde más grueso */
+    box-shadow: 0 0 0 5px rgba(255, 215, 0, 0.2); /* Anillo exterior sutil */
+}
+
+.team-member h4 {
+    margin: 10px 0 8px 0;
+    color: var(--dark-blue);
+    font-size: 1.4em;
+}
+
+.team-member p {
+    color: var(--light-text-color);
+    font-size: 1em;
+    margin-bottom: 15px;
+}
+
+.team-member a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95em;
+    transition: color 0.3s ease;
+}
+.team-member a:hover {
+    color: var(--dark-blue);
+}
+
+/* --- Sección Inversión / Token --- */
+.investment-content {
+    max-width: 1000px; /* Más ancho */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tokenomics-info {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    margin-top: 40px;
+}
+.tokenomics-info p {
+    font-size: 1.15em;
+    margin-bottom: 15px;
+    color: var(--light-text-color);
+}
+.tokenomics-info strong {
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+.tokenomics-info code {
+    background-color: rgba(0, 123, 255, 0.1); /* Fondo claro azul para el código */
+    color: var(--secondary-color);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-family: 'Fira Code', monospace; /* Fuente de código monoespaciada */
+    font-size: 0.95em;
+    display: inline-block; /* Para que el padding se aplique correctamente */
+    margin-top: 5px;
+    word-break: break-all;
+    user-select: all; /* Permite seleccionar fácilmente */
+    cursor: copy; /* Sugiere que se puede copiar */
+}
+
+.token-distribution-chart {
+    margin: 60px auto;
+    max-width: 450px; /* Ajusta según el tamaño de tu gráfico */
+}
+.token-distribution-chart img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px var(--shadow-medium);
+}
+
+/* --- Sección Documentación --- */
+.docs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Más grande */
+    gap: 35px;
+    margin-top: 40px;
+}
+
+.doc-item {
+    display: flex; /* Usar flexbox para centrar contenido verticalmente */
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px var(--shadow-light);
+    text-align: center;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 180px; /* Altura mínima para uniformidad */
+}
+
+.doc-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px var(--shadow-medium);
+}
+
+.doc-item h3 {
+    margin-top: 0;
+    color: var(--dark-blue); /* Color más oscuro para el título */
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.doc-item p {
+    color: var(--light-text-color);
+    font-size: 1.05em;
+}
+
+.disclaimer-text {
+    background-color: #fff3e0; /* Un color suave para advertencias */
+    border-left: 6px solid #ff9800; /* Borde naranja más grueso */
+    padding: 30px;
+    margin-top: 60px;
+    border-radius: 12px;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.disclaimer-text h3 {
+    color: #e68a00; /* Naranja más oscuro */
+    margin-top: 0;
+    text-align: left;
+    font-size: 1.6em;
+}
+.disclaimer-text p {
+    font-size: 1.05em;
+    line-height: 1.6;
+    color: #555;
+    text-align: left;
+}
+
+
+/* --- Sección Hoja de Ruta --- */
+.roadmap-timeline {
+    position: relative;
+    max-width: 950px;
+    margin: 0 auto;
+    padding-left: 40px; /* Más espacio para la línea */
+}
+
+.roadmap-timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px; /* Posición de la línea */
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 50px; /* Más espacio entre ítems */
+    padding-left: 60px; /* Más padding para el contenido */
+    background-color: var(--white);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease;
+}
+.timeline-item:hover {
+    transform: translateX(5px);
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px; /* Ajuste para el círculo */
+    top: 30px; /* Alinea con el contenido */
+    width: 28px; /* Tamaño del círculo */
+    height: 28px;
+    background-color: var(--secondary-color);
+    border-radius: 50%;
+    border: 5px solid var(--light-gray); /* Borde que coincide con el fondo de la sección */
+    z-index: 1;
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2); /* Anillo de sombra para el círculo */
+}
+
+.timeline-date {
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+    font-size: 1.2em;
+}
+
+.timeline-content h4 {
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--dark-blue);
+    font-size: 1.3em;
+}
+
+.timeline-content p {
+    color: var(--light-text-color);
+    font-size: 1.05em;
+}
+
+/* --- Sección Noticias --- */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Más grandes */
+    gap: 35px;
+    margin-top: 40px;
+}
+
+.news-item {
+    background-color: var(--white);
+    border-radius: 12px; /* Más redondeado */
+    box-shadow: 0 8px 25px var(--shadow-light);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.news-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px var(--shadow-medium);
+}
+
+.news-item img {
+    width: 100%;
+    height: 220px; /* Más altura para la imagen */
+    object-fit: cover;
+}
+
+.news-item h3 {
+    padding: 20px 20px 10px; /* Más padding */
+    margin: 0;
+    text-align: left;
+    font-size: 1.4em;
+    color: var(--dark-blue);
+}
+
+.news-item p {
+    padding: 0 20px 20px; /* Más padding */
+    margin: 0;
+    color: var(--light-text-color);
+    font-size: 1em;
+}
+
+
+/* --- Sección FAQ --- */
+.faq-list {
+    max-width: 900px; /* Más ancho */
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--white);
+    padding: 25px; /* Más padding */
+    margin-bottom: 20px; /* Más espacio */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    border: 1px solid #eee; /* Borde suave */
+}
+
+.faq-item h4 {
+    text-align: left;
+    margin-top: 0;
+    color: var(--dark-blue);
+    cursor: pointer;
+    font-size: 1.3em;
+    position: relative;
+    padding-right: 30px; /* Espacio para el icono de flecha */
+}
+
+/* Icono para FAQ */
+.faq-item h4::after {
+    content: '+';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    color: var(--secondary-color);
+    transition: transform 0.3s ease;
+}
+
+.faq-item.active h4::after {
+    content: '-';
+    transform: translateY(-50%) rotate(180deg); /* Gira el icono a - */
+}
+
+.faq-item p {
+    display: none;
+    margin-top: 15px;
+    color: var(--light-text-color);
+    font-size: 1.05em;
+    line-height: 1.6;
+}
+
+.faq-item.active p {
+    display: block;
+}
+
+
+/* --- Sección Contacto --- */
+.contact-form {
+    max-width: 650px; /* Más ancho */
+    margin: 0 auto 50px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Más espacio entre campos */
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    padding: 15px; /* Más padding */
+    border: 1px solid #ddd;
+    border-radius: 8px; /* Más redondeado */
+    font-size: 1.1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+.contact-form textarea {
+    resize: vertical;
+    min-height: 120px; /* Altura mínima */
+}
+
+.contact-form button {
+    align-self: flex-start;
+    padding: 15px 40px; /* Más padding */
+}
+
+.contact-info {
+    text-align: center;
+    color: var(--light-text-color);
+    font-size: 1.1em;
+}
+.contact-info a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--dark-blue);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 40px 0; /* Más padding */
+    text-align: center;
+    font-size: 1em;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    margin: 0 15px; /* Más espacio */
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+
+/* --- Adaptación para Pantallas Pequeñas (Móviles) --- */
+@media (max-width: 768px) {
+    .header .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .nav-menu ul {
+        flex-direction: column;
+        margin-top: 15px;
+        align-items: center;
+    }
+    .nav-menu ul li {
+        margin: 8px 0;
+    }
+    .header-actions {
+        margin-top: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+    .header-actions .btn {
+        margin: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .hero-section {
+        padding: 120px 0;
+    }
+    .hero-section h1 {
+        font-size: 2.8em;
+    }
+    .hero-section p {
+        font-size: 1.2em;
+    }
+    .hero-ctas .btn {
+        font-size: 1em;
+        padding: 12px 25px;
+        margin: 0 5px;
+    }
+
+    h1 { font-size: 2.5em; }
+    h2 { font-size: 2em; }
+    h3 { font-size: 1.6em; }
+    .subtitle {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+
+    .section-padding {
+        padding: 60px 0;
+    }
+
+    .team-grid, .docs-grid, .news-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .roadmap-timeline {
+        padding-left: 0;
+        padding-top: 20px; /* Espacio para el inicio de la línea */
+    }
+    .roadmap-timeline::before {
+        left: 20px; /* Ajusta la línea para móviles */
+    }
+    .timeline-item {
+        padding-left: 60px; /* Más espacio para el contenido */
+        padding-right: 15px;
+        margin-left: 20px; /* Alinea los ítems con la línea */
+    }
+    .timeline-item::before {
+        left: -10px; /* Ajusta el círculo para móviles */
+    }
+
+    .contact-form {
+        gap: 15px;
+    }
+    .contact-form button {
+        align-self: stretch; /* Botón a todo el ancho */
+    }
+
+    .footer-links a {
+        display: block;
+        margin: 10px 0;
+    }
+}
