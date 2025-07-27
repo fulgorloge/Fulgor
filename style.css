@@ -260,26 +260,126 @@ a:hover {
     font-weight: 700;
 }
 
+/* Menú de Hamburguesa para móvil */
+.menu-toggle {
+    display: none; /* Oculto por defecto en escritorio */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative;
+    z-index: 1001; /* Asegura que esté por encima del menú */
+}
+
+.hamburger {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--white);
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.menu-toggle.active .hamburger:nth-child(2) {
+    opacity: 0;
+}
+.menu-toggle.active .hamburger:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active .hamburger:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Estilos para el menú móvil */
+@media (max-width: 992px) {
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Oculto fuera de la pantalla */
+        width: 70%; /* Ancho del menú móvil */
+        height: 100%;
+        background-color: var(--dark-background); /* Fondo del menú */
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+        transition: left 0.3s ease-in-out;
+        padding-top: 80px; /* Espacio para el header fijo */
+        overflow-y: auto; /* Permite scroll si hay muchos elementos */
+        display: block; /* Asegura que siempre se muestre flex para el diseño interno */
+    }
+
+    .nav-menu.active {
+        left: 0; /* Muestra el menú */
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        padding: 20px 0;
+    }
+
+    .nav-menu ul li {
+        margin: 0; /* Elimina márgenes laterales */
+        width: 100%;
+    }
+
+    .nav-menu ul li a {
+        display: block;
+        padding: 15px 25px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: left;
+    }
+
+    .nav-menu ul li:last-child a {
+        border-bottom: none;
+    }
+
+    .menu-toggle {
+        display: block; /* Muestra el botón de hamburguesa */
+        margin-left: 20px; /* Espacio a la derecha de las acciones del header */
+    }
+    
+    .header .container {
+        flex-wrap: nowrap; /* Evita que el logo y las acciones salten de línea en el header */
+        justify-content: space-between;
+    }
+
+    .header-actions {
+        flex-direction: row; /* Mantener horizontalmente los botones de wallet */
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap; /* Permitir que salten si es necesario */
+        justify-content: flex-end; /* Alinea los botones a la derecha */
+        margin-right: 10px; /* Espacio antes del botón de hamburguesa */
+    }
+
+    .header-actions > div {
+        flex-direction: column; /* Botón arriba, saldo abajo */
+        align-items: center;
+        gap: 5px;
+    }
+
+    .investor-portal-btn {
+        margin-top: 10px; /* Empuja el botón de portal hacia abajo si los otros ya están en dos filas */
+        width: auto; /* Permitir que ocupe su ancho natural */
+    }
+}
 
 /* --- Hero Section --- */
 .hero-section {
     background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('background-hero.jpg') no-repeat center center/cover;
-    /* Asegúrate de tener una imagen background-hero.jpg */
     min-height: 80vh;
     display: flex;
-    flex-direction: column; /* Asegura que el contenido y la mascota se organicen en columna */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding-top: 80px; /* Para dejar espacio al header fijo */
-    position: relative; /* Importante para posicionar la mascota absoluta */
-    overflow: hidden; /* Evita que la mascota se salga del hero si está muy al borde */
+    padding-top: 80px; 
+    position: relative; 
+    overflow: hidden; 
 }
 
 .hero-section h1 {
     font-size: 4.5em;
     color: var(--white);
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Sombra para mejor lectura */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); 
     line-height: 1.1;
     margin-bottom: 25px;
 }
@@ -297,15 +397,13 @@ a:hover {
 }
 
 /* --- Estilos para el Fénix --- */
-
-/* Fénix en la Hero Section */
 .hero-mascot {
     position: absolute;
-    bottom: 20px; /* Distancia desde abajo */
-    right: 50px; /* Distancia desde la derecha */
-    width: 250px; /* Tamaño de la imagen del fénix */
+    bottom: 20px; 
+    right: 50px; 
+    width: 250px; 
     height: auto;
-    z-index: 1; /* Asegura que esté por encima del fondo */
+    z-index: 1; 
 }
 
 .hero-mascot img {
@@ -313,25 +411,23 @@ a:hover {
     height: auto;
     display: block;
     animation: 
-        fenixFloat 4s ease-in-out infinite alternate, /* Animación de flotar y ascender */
-        fenixGlow 2s ease-in-out infinite alternate; /* Animación de brillo sutil */
-    filter: drop-shadow(0 5px 20px rgba(255, 165, 0, 0.6)); /* Sombra para un efecto de brillo */
+        fenixFloat 4s ease-in-out infinite alternate, 
+        fenixGlow 2s ease-in-out infinite alternate; 
+    filter: drop-shadow(0 5px 20px rgba(255, 165, 0, 0.6)); 
 }
 
-/* Animación de flotar y ascender para el fénix */
 @keyframes fenixFloat {
     0% {
         transform: translateY(0px) rotate(0deg);
     }
     50% {
-        transform: translateY(-15px) rotate(2deg); /* Ligeramente más alto y rotado */
+        transform: translateY(-15px) rotate(2deg); 
     }
     100% {
         transform: translateY(0px) rotate(0deg);
     }
 }
 
-/* Animación de brillo sutil para el fénix */
 @keyframes fenixGlow {
     0% {
         filter: drop-shadow(0 5px 20px rgba(255, 165, 0, 0.6));
@@ -340,26 +436,22 @@ a:hover {
         filter: drop-shadow(0 8px 25px rgba(255, 215, 0, 0.8)) drop-shadow(0 0 10px rgba(255, 100, 0, 0.5));
     }
     100% {
-        filter: drop-shadow(0 5px 20px rgba(255, 165, 0, 0.6));
+        filter: drop_shadow(0 5px 20px rgba(255, 165, 0, 0.6));
     }
 }
 
-
-/* Mini fénix al lado del logo principal */
 .mascot-logo-mini {
     display: inline-block;
-    width: 35px; /* Tamaño de la mini mascota */
+    width: 35px; 
     height: 35px;
     margin-left: 10px;
     vertical-align: middle;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    /* La URL de la imagen se establece directamente en el HTML ahora */
-    animation: fenixMiniPulse 3s linear infinite; /* Animación de pulso y rotación */
+    animation: fenixMiniPulse 3s linear infinite; 
 }
 
-/* Animación para la mini mascota fénix */
 @keyframes fenixMiniPulse {
     0% {
         transform: scale(1) rotate(0deg);
@@ -382,7 +474,6 @@ a:hover {
         filter: brightness(1);
     }
 }
-
 
 /* --- About Section --- */
 .about-section h2, .about-section .subtitle {
@@ -458,7 +549,7 @@ a:hover {
     max-width: 900px;
     margin: 40px auto;
     font-size: 1.1em;
-    text-align: justify; /* Justifica el texto principal */
+    text-align: justify; 
 }
 
 .investment-content h3 {
@@ -485,13 +576,13 @@ a:hover {
     background-color: var(--dark-background);
     padding: 3px 8px;
     border-radius: 4px;
-    font-family: 'Roboto Mono', monospace; /* Fuente monoespaciada para código */
+    font-family: 'Roboto Mono', monospace; 
     font-size: 0.9em;
     color: var(--accent-color);
-    white-space: nowrap; /* Evita que la dirección se rompa en varias líneas */
-    overflow-x: auto; /* Permite scroll horizontal si la dirección es muy larga */
-    cursor: copy; /* Indicador de que se puede copiar */
-    display: block; /* Ocupa su propia línea */
+    white-space: nowrap; 
+    overflow-x: auto; 
+    cursor: copy; 
+    display: block; 
     margin-left: 10px;
     max-width: 70%;
 }
@@ -537,8 +628,8 @@ a:hover {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Empuja el botón al final */
-    min-height: 220px; /* Asegura altura mínima para uniformidad */
+    justify-content: space-between; 
+    min-height: 220px; 
 }
 
 .doc-item h4 {
@@ -549,12 +640,12 @@ a:hover {
 .doc-item p {
     color: var(--text-color);
     font-size: 0.95em;
-    flex-grow: 1; /* Permite que el párrafo crezca para ocupar espacio */
+    flex-grow: 1; 
     margin-bottom: 20px;
 }
 
 .doc-item .btn {
-    margin-top: auto; /* Empuja el botón hacia abajo */
+    margin-top: auto; 
 }
 
 /* --- Roadmap Section --- */
@@ -747,7 +838,7 @@ a:hover {
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px; /* Ajusta según la altura máxima esperada del contenido */
+    max-height: 200px; 
     padding: 15px 25px 25px;
 }
 
@@ -820,13 +911,13 @@ a:hover {
 }
 
 .contact-form textarea {
-    resize: vertical; /* Permite redimensionar verticalmente */
+    resize: vertical; 
     min-height: 120px;
 }
 
 .contact-form .btn-primary {
     width: fit-content;
-    align-self: center; /* Centra el botón en el formulario */
+    align-self: center; 
 }
 
 /* --- Disclaimer Section --- */
@@ -834,13 +925,13 @@ a:hover {
     font-size: 0.9em;
     color: #b0b0b0;
     text-align: justify;
-    padding-top: 40px; /* Reduce un poco el padding superior */
-    padding-bottom: 40px; /* Reduce un poco el padding inferior */
+    padding-top: 40px; 
+    padding-bottom: 40px; 
 }
 
 .disclaimer-section h2 {
     text-align: center;
-    font-size: 2em; /* Un poco más pequeño que otros H2 */
+    font-size: 2em; 
     margin-bottom: 30px;
     color: var(--primary-color);
 }
@@ -876,8 +967,21 @@ a:hover {
     h4 { font-size: 1.6em; }
     .subtitle { font-size: 1.1em; }
 
-    .nav-menu ul li {
-        margin-left: 20px;
+    /* Ajustes específicos para el header en pantallas más pequeñas */
+    .header .container {
+        flex-direction: row; /* Mantener elementos en fila */
+        justify-content: space-between; /* Espaciar logo y acciones/toggle */
+        align-items: center;
+    }
+
+    .nav-menu ul { /* Para que el menú se apile al abrir */
+        display: none; /* Oculto por defecto */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+    .nav-menu.active ul {
+        display: flex; /* Mostrar cuando está activo */
     }
 
     .hero-section h1 {
@@ -887,12 +991,11 @@ a:hover {
         font-size: 1.3em;
     }
     .hero-ctas .btn {
-        margin: 0 10px; /* Ajusta el margen para botones en tabletas */
+        margin: 0 10px; 
     }
 
-    /* Ajuste de mascota para tablets */
     .hero-mascot {
-        width: 180px; /* Reduce el tamaño en tablets */
+        width: 180px; 
         right: 30px;
         bottom: 15px;
     }
@@ -904,40 +1007,40 @@ a:hover {
 
 @media (max-width: 768px) {
     .header .container {
-        flex-direction: column;
-        align-items: center;
+        /* Ya manejado arriba, pero asegurar el flujo */
+        flex-wrap: wrap; /* Permitir envolver si los elementos son demasiado grandes */
     }
 
     .logo {
-        margin-bottom: 15px;
+        margin-bottom: 0; /* No hay margen inferior si el nav no está apilado aquí */
     }
     .mascot-logo-mini {
         /* Puedes ocultar la mini mascota en este tamaño si el espacio es muy limitado */
         display: none;
     }
 
-    .nav-menu ul {
-        flex-direction: column;
-        width: 100%;
-        text-align: center;
-        margin-bottom: 20px;
+    /* Ajuste para el nav-menu cuando se abre */
+    .nav-menu {
+        top: 80px; /* Debajo del header fijo */
+        left: -100%;
+        width: 100%; /* Ocupar todo el ancho en pantallas más pequeñas */
+        height: calc(100% - 80px); /* Restar la altura del header */
+        z-index: 999; /* Por debajo del header pero por encima del contenido */
+        padding-top: 0; /* Resetear el padding-top si se define en el media query superior */
     }
 
-    .nav-menu ul li {
-        margin: 10px 0;
-    }
-    
     .header-actions {
-        flex-direction: column; /* Apila los botones verticalmente en móviles */
-        width: 100%;
+        flex-direction: column; 
+        width: auto; /* Dejar que el contenido defina el ancho */
         gap: 10px;
-        align-items: stretch; /* Estira los botones para que ocupen todo el ancho */
+        align-items: stretch; 
+        margin-right: 0; /* Resetear margen */
     }
     .header-actions > div {
-        width: 100%; /* Asegura que cada contenedor de botón/saldo ocupe todo el ancho */
+        width: 100%; 
     }
     .header-actions .btn {
-        width: 100%; /* Asegura que los botones ocupen todo el ancho disponible */
+        width: 100%; 
         text-align: center;
     }
 
@@ -962,7 +1065,7 @@ a:hover {
     .timeline-item {
         width: 100%;
         left: 0 !important;
-        padding-left: 60px; /* Espacio para el icono */
+        padding-left: 60px; 
         padding-right: 20px;
         text-align: left !important;
     }
@@ -974,12 +1077,11 @@ a:hover {
         left: 0px;
     }
     .timeline-icon {
-        top: 0px; /* Ajusta la posición vertical del icono */
+        top: 0px; 
     }
 
-    /* Ajuste de mascota para móviles */
     .hero-mascot {
-        width: 130px; /* Reduce aún más en móviles */
+        width: 130px; 
         right: 15px;
         bottom: 10px;
     }
@@ -1013,13 +1115,13 @@ a:hover {
         gap: 5px;
     }
     .tokenomics-info code {
-        max-width: 100%; /* Ocupa todo el ancho disponible */
+        max-width: 100%; 
         margin-left: 0;
     }
 
     .hero-mascot {
-        width: 100px; /* Tamaño muy pequeño en los teléfonos más pequeños */
+        width: 100px; 
         right: 10px;
-        bottom: 5px; /* Puede que necesites ocultarlo o reposicionarlo completamente en algunos diseños */
+        bottom: 5px; 
     }
 }
